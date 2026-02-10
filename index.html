@@ -25,148 +25,154 @@
             scroll-behavior: smooth;
         }
 
-        /* 고급 다크 그라데이션 배너 */
+        /* 배너 디자인 */
         .hero-banner {
             background: radial-gradient(circle at 20% 30%, #1e1b4b 0%, #0f172a 100%);
-            color: white; padding: 100px 20px; text-align: center;
+            color: white; padding: 80px 20px; text-align: center;
         }
         .hero-banner h1 {
-            font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -2px;
+            font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -2px;
             background: linear-gradient(to right, #fff, #94a3b8);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero-banner p { font-size: 1.2rem; font-weight: 300; opacity: 0.7; }
+        .hero-banner p { font-size: 1.1rem; opacity: 0.7; font-weight: 300; }
 
         .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
 
-        nav {
-            position: sticky; top: 0; background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px); border-bottom: 1px solid var(--divider);
-            z-index: 1000; padding: 15px 0;
+        /* 필터 및 검색 바 (최상단 고정) */
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
-        .nav-links { display: flex; justify-content: center; gap: 30px; }
+        .filter-section {
+            background: white;
+            border-bottom: 1px solid var(--divider);
+            padding: 15px 0;
+        }
+        .filter-container {
+            display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center;
+        }
+        .search-input {
+            padding: 10px 20px; border: 2px solid var(--divider); border-radius: 12px;
+            width: 280px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+        }
+        .search-input:focus { border-color: var(--primary); }
+        .filter-select {
+            padding: 10px 15px; border: 2px solid var(--divider); border-radius: 12px;
+            background: white; font-size: 0.9rem; cursor: pointer; outline: none;
+        }
+
+        /* 네비게이션 (필터 바로 아래 고정) */
+        nav {
+            background: #f1f5f9; padding: 8px 0; border-bottom: 1px solid var(--divider);
+        }
+        .nav-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .nav-links a { 
             text-decoration: none; color: var(--text-sub); font-weight: 600; 
-            font-size: 1rem; padding: 8px 16px; border-radius: 8px; transition: 0.2s;
+            font-size: 0.85rem; padding: 6px 12px; border-radius: 8px; transition: 0.2s;
         }
-        .nav-links a:hover { color: var(--primary); background: #f1f5f9; }
+        .nav-links a.active { color: var(--primary); background: white; font-weight: 800; }
 
-        /* 대분류 섹션 및 페이지 구분 */
-        .main-section { 
-            padding: 100px 0; border-bottom: 10px solid #f1f5f9; min-height: 80vh;
-        }
+        /* 대분류 타이틀 고정 효과 (Sticky Header) */
+        .main-section { padding: 40px 0 80px; border-bottom: 10px solid #f1f5f9; }
         .main-title {
-            font-size: 2.5rem; font-weight: 800; color: var(--text-main);
-            margin-bottom: 60px; display: flex; align-items: center; gap: 15px;
+            position: sticky;
+            top: 115px; /* 필터+네비 높이만큼 띄움 */
+            background: var(--bg);
+            padding: 15px 0;
+            margin: 0 0 40px 0;
+            font-size: 2rem; font-weight: 800; color: var(--primary);
+            z-index: 10;
+            display: flex; align-items: center; gap: 15px;
         }
-        .main-title::after {
-            content: ""; flex: 1; height: 2px;
-            background: linear-gradient(to right, var(--primary), transparent);
-        }
+        .main-title::after { content: ""; flex: 1; height: 2px; background: linear-gradient(to right, var(--primary), transparent); }
 
         .cat-block { margin-bottom: 60px; }
         .cat-header {
-            font-size: 1.6rem; font-weight: 700; margin-bottom: 30px;
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 25px;
             display: flex; align-items: center; gap: 12px; color: #334155;
         }
 
         .sub-block { margin-bottom: 40px; }
         .sub-title {
-            font-size: 1.1rem; color: var(--text-sub); margin-bottom: 20px;
+            font-size: 1rem; color: var(--text-sub); margin-bottom: 20px;
             padding-left: 12px; border-left: 4px solid var(--primary); font-weight: 600;
         }
 
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
         .card {
-            background: var(--card-bg); border-radius: 20px; padding: 28px;
-            border: 1px solid #edf2f7; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            background: var(--card-bg); border-radius: 20px; padding: 25px;
+            border: 1px solid #edf2f7; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-decoration: none; cursor: pointer; display: flex; flex-direction: column;
         }
-        .card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.15); border-color: var(--primary);
-        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(50, 50, 93, 0.15); border-color: var(--primary); }
 
-        .name-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-        .tool-logo {
-            width: 32px; height: 32px; border-radius: 8px;
-            background: #fff; object-fit: contain; border: 1px solid #f1f5f9;
-        }
-        .tool-name { font-size: 1.35rem; font-weight: 800; color: var(--text-main); }
+        .name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .tool-logo { width: 30px; height: 30px; border-radius: 8px; object-fit: contain; background: #fff; border: 1px solid #f1f5f9; }
+        .tool-name { font-size: 1.25rem; font-weight: 800; color: var(--text-main); }
 
         .killer-tag {
-            font-size: 0.9rem; font-weight: 600; color: var(--primary);
-            background: #eff6ff; padding: 6px 12px; border-radius: 8px;
-            display: inline-block; margin-bottom: 20px; align-self: flex-start;
+            font-size: 0.85rem; font-weight: 600; color: var(--primary);
+            background: #eff6ff; padding: 5px 10px; border-radius: 8px;
+            display: inline-block; margin-bottom: 15px; align-self: flex-start;
         }
 
-        .details { font-size: 0.9rem; color: var(--text-sub); flex-grow: 1; }
-        .row { display: flex; padding: 8px 0; border-bottom: 1px solid #f8fafc; }
+        .details { font-size: 0.85rem; color: var(--text-sub); flex-grow: 1; }
+        .row { display: flex; padding: 6px 0; border-bottom: 1px solid #f8fafc; }
         .row:last-child { border-bottom: none; }
-        .label { width: 90px; font-weight: 700; color: #94a3b8; }
+        .label { width: 85px; font-weight: 700; color: #94a3b8; }
         .val { flex: 1; color: #475569; }
 
-        /* 한국어 지원 형광펜 효과 */
-        .hl-kr {
-            background: linear-gradient(to top, var(--highlight) 45%, transparent 45%);
-            color: #166534; font-weight: 800; padding: 0 4px;
-        }
-
+        .hl-kr { background: linear-gradient(to top, var(--highlight) 45%, transparent 45%); color: #166534; font-weight: 800; padding: 0 4px; }
+        
+        .no-results { text-align: center; padding: 100px; font-size: 1.2rem; color: var(--text-sub); }
         footer { text-align: center; padding: 80px 0; color: #94a3b8; font-size: 0.95rem; }
-
-
-
-        /* 활성화된 네비게이션 스타일 */
-        .nav-links a.active {
-            color: var(--primary);
-            background: #f1f5f9;
-            box-shadow: inset 0 -2px 0 var(--primary);
-            border-radius: 8px 8px 0 0;
-        }
     </style>
 </head>
 <body>
 
 <div class="hero-banner">
     <h1>AI Intelligence Directory</h1>
-    <p>Premium Curation of Global Artificial Intelligence Solutions for 2026</p>
+    <p>Professional curation of 120+ Global AI Solutions for 2026</p>
 </div>
 
-<nav>
-    <div class="container nav-links" id="nav-container"></div>
-</nav>
+<div class="sticky-wrapper">
+    <section class="filter-section">
+        <div class="container filter-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="이름 또는 기능 검색 (예: 챗봇, 디자인)...">
+            <select id="priceFilter" class="filter-select"><option value="all">전체 비용</option><option value="free">무료/체험 가능</option><option value="paid">유료</option></select>
+            <select id="langFilter" class="filter-select"><option value="all">언어 지원 여부</option><option value="kr">한국어 지원</option><option value="en">영어 전용</option></select>
+            <select id="subCatFilter" class="filter-select"><option value="all">전체 서브카테고리</option></select>
+        </div>
+    </section>
+    <nav><div class="container nav-links" id="nav-container"></div></nav>
+</div>
 
 <div class="container" id="content-root"></div>
 
-<footer>
-    <p>&copy; 2026 AI Intelligence Directory. All rights reserved.</p>
-</footer>
+<footer><p>&copy; 2026 AI Intelligence Directory. All rights reserved.</p></footer>
 
 <script>
-    // 카테고리별 이모티콘 매핑
     const categoryIcons = {
-        "정보 검색 / 문서 작성": "📝", "회의 및 기록": "📅", "연구": "🔍", "시각화 & PPT": "📊", "통번역": "🌐",
-        "디자인 및 UI/UX": "🎨", "영상 생성": "🎬", "이미지 생성 및 편집": "🖼️", "오디오 및 AI 아바타": "🎙️", "스토리보드 및 웹툰": "📚",
-        "AI 모델 및 추론 인프라": "⚙️", "로컬 및 오픈소스": "💻", "업무 자동화 및 에이전트": "🤖", "코딩 및 웹 빌드": "⚡"
+        "디자인 및 UI/UX": "🎨", "스토리보드 및 웹툰": "📚", "영상 생성": "🎬", "오디오 및 AI 아바타": "🎙️",
+        "이미지 생성 및 편집": "🖼️", "AI 모델 및 추론 인프라": "⚙️", "로컬 및 오픈소스": "💻",
+        "업무 자동화 및 에이전트": "🤖", "코딩 및 웹 빌드": "⚡", "시각화 & PPT": "📊", "연구": "🔍",
+        "정보 검색 / 문서 작성": "📝", "통번역": "🌐", "회의 및 기록": "📅"
     };
 
-    // 공식 사이트 매핑 (이름 기반으로 이동)
     const siteMap = {
         "ChatGPT": "chatgpt.com", "Claude": "claude.ai", "DeepSeek": "deepseek.com", "뤼튼 (Wrtn)": "wrtn.ai",
         "ClovaNote": "clovanote.naver.com", "Notion": "notion.so", "Perplexity": "perplexity.ai", "Gamma": "gamma.app",
         "Cursor": "cursor.com", "Dify": "dify.ai", "Ollama": "ollama.com", "Midjourney": "midjourney.com",
-        "Adobe Firefly": "firefly.adobe.com", "Sora 2": "openai.com/sora", "10Web AI": "10web.io", "Banani": "banani.ai",
-        "Bolt.new": "bolt.new", "Dora AI": "dora.run", "Figma AI": "figma.com", "HeyGen": "heygen.com", "ElevenLabs": "elevenlabs.io"
-        // 리스트에 없는 항목은 기본적으로 .ai 또는 .com으로 자동 생성 연결됩니다.
+        "Adobe Firefly": "firefly.adobe.com", "Sora 2": "openai.com/sora"
     };
 
-
-
+    // 121개 전체 데이터 (형식 유지)
     const aiData = [
-        // 1. 지식 & 비즈니스 생산성
+    // 1. 지식 & 비즈니스 생산성
         { "main": "지식 & 비즈니스 생산성", "category": "시각화 & PPT", "sub": "콘텐츠 제작", "name": "Gamma", "killer": "프롬프트 기반 PPT 생성", "feature": "1분 만에 디자인 완성된 발표 자료 제작.", "join": "구글 계정", "free": "월 400 AI 크레딧", "kr": "한국어 지원" },
         { "main": "지식 & 비즈니스 생산성", "category": "시각화 & PPT", "sub": "콘텐츠 제작", "name": "Mapify", "killer": "AI 마인드맵 자동 생성", "feature": "복잡한 정보를 한눈에 시각화 구조화.", "join": "구글/이메일", "free": "무료 플랜", "kr": "한국어 지원" },
         { "main": "지식 & 비즈니스 생산성", "category": "시각화 & PPT", "sub": "콘텐츠 제작", "name": "Napkin", "killer": "다이어그램 자동 변환", "feature": "텍스트를 시각적 인포그래픽으로 자동 변경.", "join": "구글 계정", "free": "무료 무제한", "kr": "한국어 입력 가능" },
@@ -294,25 +300,46 @@
         { "main": "엔지니어링 & 지능형 자동화", "category": "코딩 및 웹 빌드", "sub": "AI 코딩 에디터", "name": "Windsurf", "killer": "차세대 AI 에디터", "feature": "사용자 의도를 파악하는 코딩 보조 툴.", "join": "이메일 가입", "free": "무료 플랜 제공", "kr": "한국어 지원" }
     ];
 
-        // 대분류 정렬 순서 정의
     const mainOrder = ["지식 & 비즈니스 생산성",  "비주얼 & 멀티미디어", "엔지니어링 & 지능형 자동화"];
+
+    function initFilters() {
+        const subCatSelect = document.getElementById('subCatFilter');
+        const allSubs = [...new Set(aiData.map(d => d.sub))].sort();
+        allSubs.forEach(sub => { if(sub && sub !== "undefined") { const opt = document.createElement('option'); opt.value = sub; opt.innerText = sub; subCatSelect.appendChild(opt); }});
+        ['searchInput', 'priceFilter', 'langFilter', 'subCatFilter'].forEach(id => document.getElementById(id).addEventListener(id === 'searchInput' ? 'input' : 'change', render));
+    }
 
     function render() {
         const root = document.getElementById('content-root');
         const nav = document.getElementById('nav-container');
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const priceFilter = document.getElementById('priceFilter').value;
+        const langFilter = document.getElementById('langFilter').value;
+        const subCatFilter = document.getElementById('subCatFilter').value;
+
+        root.innerHTML = ""; nav.innerHTML = "";
+        let hasAnyResult = false;
 
         mainOrder.forEach(mainName => {
-            const mainData = aiData.filter(d => d.main === mainName);
-            if(mainData.length === 0) return;
+            const mainData = aiData.filter(d => {
+                // 한국어 검색 강화: 이름, 킬러기능, 특징 모두 검색 대상
+                const searchableText = `${d.name} ${d.killer} ${d.feature}`.toLowerCase();
+                const matchSearch = searchableText.includes(searchTerm);
+                const matchPrice = priceFilter === 'all' || (priceFilter === 'free' && (d.free.includes('무료') || d.free.includes('체험'))) || (priceFilter === 'paid' && !d.free.includes('무료') && !d.free.includes('체험'));
+                const matchLang = langFilter === 'all' || (langFilter === 'kr' && (d.kr.includes('지원') || d.kr.includes('한국어'))) || (langFilter === 'en' && !d.kr.includes('지원') && !d.kr.includes('한국어'));
+                const matchSub = subCatFilter === 'all' || d.sub === subCatFilter;
+                return d.main === mainName && matchSearch && matchPrice && matchLang && matchSub;
+            });
 
+            if(mainData.length === 0) return;
+            hasAnyResult = true;
+
+            const navId = mainName.replace(/\s/g, '');
             const navLink = document.createElement('a');
-            navLink.href = `#${mainName.replace(/\s/g, '')}`;
-            navLink.innerText = mainName;
-            nav.appendChild(navLink);
+            navLink.href = `#${navId}`; navLink.innerText = mainName; nav.appendChild(navLink);
 
             const section = document.createElement('section');
-            section.className = 'main-section';
-            section.id = mainName.replace(/\s/g, '');
+            section.className = 'main-section'; section.id = navId;
             section.innerHTML = `<h2 class="main-title">${mainName}</h2>`;
 
             const categories = [...new Set(mainData.map(d => d.category))];
@@ -326,18 +353,15 @@
                     const subBlock = document.createElement('div');
                     subBlock.className = 'sub-block';
                     if(subName && subName !== "undefined") subBlock.innerHTML = `<div class="sub-title">${subName}</div>`;
-
+                    
                     const grid = document.createElement('div');
                     grid.className = 'grid';
 
                     mainData.filter(d => d.category === catName && d.sub === subName).forEach(tool => {
-                        // 로고 및 사이트 직접 연결 로직
                         const cleanName = tool.name.replace(/[^\w\s]/gi, '').split(' ')[0].toLowerCase();
                         const domain = siteMap[tool.name] || `${cleanName}.ai`;
                         const logoUrl = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
-                        
-                        const isKr = tool.kr.includes('지원') || tool.kr.includes('한국어') || tool.kr.includes('특화') || tool.kr.includes('완벽');
-                        const krDisplay = isKr ? `<span class="hl-kr">${tool.kr}</span>` : tool.kr;
+                        const isKr = tool.kr.includes('지원') || tool.kr.includes('한국어') || tool.kr.includes('특화');
 
                         grid.innerHTML += `
                             <a class="card" href="https://${domain}" target="_blank">
@@ -349,47 +373,38 @@
                                 <div class="details">
                                     <div class="row"><div class="label">가입 방식</div><div class="val">${tool.join}</div></div>
                                     <div class="row"><div class="label">무료 한도</div><div class="val">${tool.free}</div></div>
-                                    <div class="row"><div class="label">지원 언어</div><div class="val">${krDisplay}</div></div>
+                                    <div class="row"><div class="label">지원 언어</div><div class="val">${isKr ? `<span class="hl-kr">${tool.kr}</span>` : tool.kr}</div></div>
                                 </div>
                             </a>
                         `;
                     });
-                    subBlock.appendChild(grid);
-                    catBlock.appendChild(subBlock);
+                    subBlock.appendChild(grid); catBlock.appendChild(subBlock);
                 });
                 section.appendChild(catBlock);
             });
             root.appendChild(section);
         });
+
+        if(!hasAnyResult) root.innerHTML = `<div class="no-results">검색 조건에 맞는 AI 서비스가 없습니다.</div>`;
+        setupScrollSpy();
     }
 
-
-    window.onload = function() {
-        render(); // 기존 렌더링 함수 실행
-
+    function setupScrollSpy() {
         const navAnchor = document.querySelectorAll('.nav-links a');
         const sections = document.querySelectorAll('.main-section');
-
-        window.addEventListener('scroll', () => {
+        window.onscroll = () => {
             let current = "";
-
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // 화면 중간(window.innerHeight / 3) 지점에 섹션이 걸리면 활성화
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
+                if (pageYOffset >= (section.offsetTop - 250)) current = section.getAttribute('id');
             });
-
             navAnchor.forEach(a => {
                 a.classList.remove('active');
-                if (a.getAttribute('href') === `#${current}`) {
-                    a.classList.add('active');
-                }
+                if (a.getAttribute('href') === `#${current}`) a.classList.add('active');
             });
-        });
-};
+        };
+    }
+
+    window.onload = () => { initFilters(); render(); };
 </script>
 
 </body>
